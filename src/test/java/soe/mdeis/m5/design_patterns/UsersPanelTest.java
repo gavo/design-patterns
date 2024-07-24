@@ -2,6 +2,8 @@ package soe.mdeis.m5.design_patterns;
 
 import org.junit.jupiter.api.Test;
 
+import soe.mdeis.m5.design_patterns.aggregate.Aggregate;
+import soe.mdeis.m5.design_patterns.aggregate.CREAggregate;
 import soe.mdeis.m5.design_patterns.aggregate.FacebookAggregate;
 import soe.mdeis.m5.design_patterns.aggregate.GoogleAggregate;
 import soe.mdeis.m5.design_patterns.view.UsersPanel;
@@ -16,9 +18,13 @@ public class UsersPanelTest {
 
     @Test
     void show_users_v2() {
-        var panel = new UsersPanelV2(new FacebookAggregate());
-        panel.addAggregate(new GoogleAggregate());
+        Aggregate<?>[] aggregateList = {
+                new FacebookAggregate(),
+                new GoogleAggregate(),
+                new CREAggregate()
+        };
 
+        var panel = new UsersPanelV2(aggregateList);
         panel.show();
     }
 
